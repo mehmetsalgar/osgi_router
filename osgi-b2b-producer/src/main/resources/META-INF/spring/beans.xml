@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cxfbc="http://servicemix.apache.org/cxfbc/1.0"
+	xmlns:orderProvider_v1="http://v1.salgar.org/B2BService"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://servicemix.apache.org/cxfbc/1.0 http://servicemix.apache.org/cxfbc/1.0/servicemix-cxf-bc.xsd">
+	
+	<cxfbc:provider endpoint="findOrdersProviderEndpoint"
+		useJBIWrapper="false" wsdl="classpath:v1/B2BService.wsdl" service="orderProvider_v1:findOrders"
+		locationURI="http://localhost:8989/MockB2BService" />
+
+	<bean class="org.apache.servicemix.common.osgi.EndpointExporter" />
+
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://salgar.org/B2BService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2BService" targetNamespace="http://salgar.org/B2BService">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://v1.salgar.org/B2BService"
+    	xmlns:pref="http://www.example.org/B2BServiceSchema" xmlns:b2b="http://salgar.org/B2BServiceSchema">
+
+    	<xsd:import schemaLocation="B2BServiceSchema.xsd" namespace="http://salgar.org/B2BServiceSchema"></xsd:import>
+    	<xsd:element name="B2BRequestDocument">
+    		<xsd:complexType>
+    			<xsd:sequence>
+    				<xsd:element name="customer" type="b2b:CustomerType" />
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="B2bResponseDocument">
+    		<xsd:complexType>
+    			<xsd:sequence>
+    				<xsd:element name="orders" type="b2b:OrdersType" />
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="findOrdersRequest">
+    <wsdl:part element="tns:B2BRequestDocument" name="B2BRequestDocument"/>
+  </wsdl:message>
+  <wsdl:message name="findOrdersResponse">
+    <wsdl:part element="tns:B2bResponseDocument" name="B2BResponseDocument"/>
+  </wsdl:message>
+  <wsdl:portType name="B2BService">
+    <wsdl:operation name="findOrders">
+      <wsdl:input message="tns:findOrdersRequest"/>
+      <wsdl:output message="tns:findOrdersResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B2BServiceSOAP" type="tns:B2BService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findOrders">
+      <soap:operation soapAction="http://salgar.org/B2BService/NewOperation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="B2BService">
+    <wsdl:port binding="tns:B2BServiceSOAP" name="B2BServiceSOAP">
+      <soap:address location="http://salgar.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

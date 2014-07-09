@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:osgiRouter="http://osgi.salgar.org/osgirouter"
+	xmlns:orderProvider_v1="http://v1.salgar.org/B2BService"
+	xmlns:http="http://servicemix.apache.org/http/1.0"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://servicemix.apache.org/http/1.0 http://servicemix.apache.org/http/1.0/servicemix-http.xsd">
+
+	<http:consumer service="http:FindOrders" endpoint="httpEndpoint" locationURI="http://localhost:8088/MockB2BService"
+		defaultMep="http://www.w3.org/2004/08/wsdl/in-out" targetService="orderProvider_v1:findOrders"  />
+		
+	<bean class="org.apache.servicemix.common.osgi.EndpointExporter" />
+</beans>

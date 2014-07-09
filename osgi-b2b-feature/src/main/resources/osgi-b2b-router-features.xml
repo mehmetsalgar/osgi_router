@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<feature name="osgi-b2b-router-feature" version="${osgi-router.version}">
+		<feature version="${servicemix.version}">servicemix-cxf-bc</feature>
+		<feature version="${servicemix.version}">servicemix-http</feature>
+		<feature version="${servicemix.version}">servicemix-eip</feature>
+		<bundle>mvn:org.salgar/osgi-b2b-router/${pom.version}</bundle>		
+		<bundle>mvn:org.salgar/osgi-b2b-mediation/${pom.version}</bundle>
+		<bundle>mvn:org.salgar/osgi-b2b-producer/${pom.version}</bundle>		
+	</feature>
+</features>

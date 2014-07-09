@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eip="http://servicemix.apache.org/eip/1.0"
+	xmlns:osgiRouter="http://osgi.salgar.org/osgirouter"
+	xmlns:orderProvider_v1="http://v1.salgar.org/B2BService"
+	xmlns:orderProvider_v3="http://v3.salgar.org/B2BService"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://servicemix.apache.org/eip/1.0 http://servicemix.apache.org/eip/1.0/servicemix-eip.xsd">
+
+	<eip:content-based-router endpoint="osgiRouterMediation"
+		service="osgiRouter:mediation">
+		<eip:rules>
+			<eip:routing-rule>
+				<eip:predicate>
+					<eip:xpath-predicate id="wsdl_version_predicate_v1"
+						xpath="(//namespace::*[.='http://v1.salgar.org/B2BService']) = 'http://v1.salgar.org/B2BService'" />
+				</eip:predicate>
+				<eip:target>
+					<eip:exchange-target service="orderProvider_v1:findOrders" />
+				</eip:target>
+			</eip:routing-rule>
+			<eip:routing-rule>
+				<eip:predicate>
+					<eip:xpath-predicate id="wsdl_version_predicate_v3"
+						xpath="(//namespace::*[.='http://v3.salgar.org/B2BService']) = 'http://v3.salgar.org/B2BService'" />
+				</eip:predicate>
+				<eip:target>
+					<eip:exchange-target service="orderProvider_v3:findOrders" />
+				</eip:target>
+			</eip:routing-rule>
+		</eip:rules>
+	</eip:content-based-router>
+	
+	<bean class="org.apache.servicemix.common.osgi.EndpointExporter" />
+</beans>

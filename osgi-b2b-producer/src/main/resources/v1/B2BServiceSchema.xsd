@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://salgar.org/B2BServiceSchema" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://salgar.org/B2BServiceSchema">
+
+    <complexType name="CustomerType">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="lastName" type="string"></element>
+    		<element name="street" type="string"></element>
+    		<element name="houseno" type="string"></element>
+    		<element name="postcode" type="string"></element>
+    		<element name="city" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="OrderType">
+    	<sequence>
+    		<element name="id" type="string"></element>
+    		<element name="amount" type="string"></element>
+    		<element name="status" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="OrdersType">
+    	<sequence>
+    		<element name="order" type="tns:OrderType" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+</schema>
