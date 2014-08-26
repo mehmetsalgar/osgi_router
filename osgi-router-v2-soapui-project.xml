@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="osgi-router-v2" resourceRoot="${projectDir}" soapui-version="4.6.3" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="B2BServiceSOAP" type="wsdl" bindingName="{http://v2.salgar.org/B2BService}B2BServiceSOAP" soapVersion="1_1" anonymous="optional" definition="osgi-b2b-producer_v2/src/main/resources/v2/B2BService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/dev/wss/osgi_router/osgi-router/osgi-b2b-producer_v2/src/main/resources/v2/B2BService.wsdl"><con:part><con:url>file:/C:/dev/wss/osgi_router/osgi-router/osgi-b2b-producer_v2/src/main/resources/v2/B2BService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="B2BService" targetNamespace="http://v2.salgar.org/B2BService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://v2.salgar.org/B2BService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import namespace="http://salgar.org/B2BServiceSchema" location="B2BServiceSchema.xsd"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://v2.salgar.org/B2BService" xmlns:b2b="http://salgar.org/B2BServiceSchema">
+      <xsd:import schemaLocation="B2BServiceSchema.xsd" namespace="http://salgar.org/B2BServiceSchema"/>
+      <xsd:element name="B2BRequestDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="customer" type="b2b:CustomerType" minOccurs="0" nillable="true"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="B2BResponseDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="orders" type="b2b:OrdersType" minOccurs="0" nillable="true"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="findOrdersRequest">
+    <wsdl:part element="tns:B2BRequestDocument" name="B2BRequestDocument"/>
+  </wsdl:message>
+  <wsdl:message name="findOrdersResponse">
+    <wsdl:part element="tns:B2BResponseDocument" name="B2BResponseDocument"/>
+  </wsdl:message>
+  <wsdl:portType name="B2BService">
+    <wsdl:operation name="findOrders">
+      <wsdl:input message="tns:findOrdersRequest"/>
+      <wsdl:output message="tns:findOrdersResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B2BServiceSOAP" type="tns:B2BService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findOrders">
+      <soap:operation soapAction="http://salgar.org/B2BService/findOrders"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="findOrders">
+    <wsdl:port binding="tns:B2BServiceSOAP" name="B2BServiceSOAP">
+      <soap:address location="http://salgar.org/findOrders"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\dev\wss\osgi_router\osgi-router\osgi-b2b-producer_v2\src\main\resources\v2\B2BServiceSchema.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://salgar.org/B2BServiceSchema" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://salgar.org/B2BServiceSchema">
+  <complexType name="CustomerType">
+    <sequence>
+      <element name="name" type="string"/>
+      <element name="lastName" type="string"/>
+      <element name="street" type="string"/>
+      <element name="houseno" type="string"/>
+      <element name="postcode" type="string"/>
+      <element name="city" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="OrderType">
+    <sequence>
+      <element name="id" type="string"/>
+      <element name="amount" type="string"/>
+      <element name="status" type="string"/>
+      <element name="date" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="OrdersType">
+    <sequence>
+      <element name="order" type="tns:OrderType" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/MockB2BService/</con:endpoint><con:endpoint>http://salgar.org/findOrders</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://salgar.org/B2BService/findOrders" name="findOrders" bindingOperationName="findOrders" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/MockB2BService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:b2b="http://v2.salgar.org/B2BService" 
+	xmlns:b2b1="http://salgar.org/B2BServiceSchema">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <b2b:B2BRequestDocument>
+         <customer>
+            <b2b1:name>John</b2b1:name>
+            <b2b1:lastName>Doe</b2b1:lastName>
+            <b2b1:street>Downstreet</b2b1:street>
+            <b2b1:houseno>8</b2b1:houseno>
+            <b2b1:postcode>55123</b2b1:postcode>
+            <b2b1:city>Lads</b2b1:city>
+         </customer>
+      </b2b:B2BRequestDocument>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://v2.salgar.org/B2BService/B2BService/findOrdersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="9090" path="/MockB2BService" host="DBNMCA8" name="B2BServiceSOAP_v2_MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="findOrders" interface="B2BServiceSOAP" operation="findOrders"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Header/>
+   <soapenv:Body>
+      <b2b:B2bResponseDocument xmlns:b2b="http://v2.salgar.org/B2BService">
+         <orders>
+            <order xmlns="http://salgar.org/B2BServiceSchema">
+               <id>2</id>
+               <amount>6</amount>
+               <status>CLOSED</status>
+               <date>21/07/2014</date>
+            </order>
+         </orders>
+      </b2b:B2bResponseDocument>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://v2.salgar.org/B2BService/B2BService/findOrdersResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

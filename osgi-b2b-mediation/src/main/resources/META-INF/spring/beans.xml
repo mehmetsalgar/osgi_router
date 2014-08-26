@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eip="http://servicemix.apache.org/eip/1.0"
 	xmlns:osgiRouter="http://osgi.salgar.org/osgirouter"
 	xmlns:orderProvider_v1="http://v1.salgar.org/B2BService"
-	xmlns:orderProvider_v3="http://v3.salgar.org/B2BService"
+	xmlns:orderProvider_v2="http://v2.salgar.org/B2BService"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://servicemix.apache.org/eip/1.0 http://servicemix.apache.org/eip/1.0/servicemix-eip.xsd">
 
@@ -21,11 +21,11 @@
 			</eip:routing-rule>
 			<eip:routing-rule>
 				<eip:predicate>
-					<eip:xpath-predicate id="wsdl_version_predicate_v3"
-						xpath="(//namespace::*[.='http://v3.salgar.org/B2BService']) = 'http://v3.salgar.org/B2BService'" />
+					<eip:xpath-predicate id="wsdl_version_predicate_v2"
+						xpath="(//namespace::*[.='http://v2.salgar.org/B2BService']) = 'http://v2.salgar.org/B2BService'" />
 				</eip:predicate>
 				<eip:target>
-					<eip:exchange-target service="orderProvider_v3:findOrders" />
+					<eip:exchange-target service="orderProvider_v2:findOrders" />
 				</eip:target>
 			</eip:routing-rule>
 		</eip:rules>

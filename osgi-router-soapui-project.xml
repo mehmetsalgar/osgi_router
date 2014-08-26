@@ -111,10 +111,24 @@
          </customer>
       </b2b:B2BRequestDocument>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://v1.salgar.org/B2BService/B2BService/findOrdersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8989" path="/MockB2BService" host="DBNMCA8" name="B2BServiceSOAP_MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="findOrders" interface="B2BServiceSOAP" operation="findOrders"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:b2b="http://salgar.org/B2BService" >
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://v1.salgar.org/B2BService/B2BService/findOrdersRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 4"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/MockB2BService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:b2b="http://v1.salgar.org/B2BService" xmlns:b2b1="http://salgar.org/B2BServiceSchema">
    <soapenv:Header/>
    <soapenv:Body>
-      <b2b:B2bResponseDocument>
+      <b2b:B2BRequestDocument>
+         <!--Optional:-->
+         <customer>
+            <b2b1:name>?</b2b1:name>
+            <b2b1:lastName>?</b2b1:lastName>
+            <b2b1:street>?</b2b1:street>
+            <b2b1:houseno>?</b2b1:houseno>
+            <b2b1:postcode>?</b2b1:postcode>
+            <b2b1:city>?</b2b1:city>
+         </customer>
+      </b2b:B2BRequestDocument>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://v1.salgar.org/B2BService/B2BService/findOrdersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8989" path="/MockB2BService" host="DBNMCA8" name="B2BServiceSOAP_MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="findOrders" interface="B2BServiceSOAP" operation="findOrders"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" >
+   <soapenv:Body>
+      <b2b:B2bResponseDocument xmlns:b2b="http://v1.salgar.org/B2BService">
          <orders>
             <order xmlns="http://salgar.org/B2BServiceSchema">
                <id>1</id>

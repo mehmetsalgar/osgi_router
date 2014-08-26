@@ -4,8 +4,9 @@
 		<feature version="${servicemix.version}">servicemix-cxf-bc</feature>
 		<feature version="${servicemix.version}">servicemix-http</feature>
 		<feature version="${servicemix.version}">servicemix-eip</feature>
-		<bundle>mvn:org.salgar/osgi-b2b-router/${pom.version}</bundle>		
+		<bundle>mvn:org.salgar/osgi-b2b-router/${pom.version}</bundle>
 		<bundle>mvn:org.salgar/osgi-b2b-mediation/${pom.version}</bundle>
-		<bundle>mvn:org.salgar/osgi-b2b-producer/${pom.version}</bundle>		
+		<bundle>mvn:org.salgar/osgi-b2b-producer/${pom.version}</bundle>
+		<bundle>mvn:org.salgar/osgi-b2b-producer_v2/2.0-SNAPSHOT</bundle>
 	</feature>
 </features>

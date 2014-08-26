@@ -40,9 +40,10 @@
 	</pluginManagement>
   </build>
   <modules>
-  	<module>osgi-b2b-router</module>
+    <module>osgi-b2b-router</module>
     <module>osgi-b2b-mediation</module>
     <module>osgi-b2b-producer</module>
+    <module>osgi-b2b-producer_v2</module>
     <module>osgi-b2b-feature</module>
   </modules>
   
